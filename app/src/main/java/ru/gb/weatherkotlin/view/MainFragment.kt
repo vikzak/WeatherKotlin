@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import com.google.android.material.snackbar.Snackbar
+import com.yandex.mapkit.MapKitFactory
 import ru.gb.weatherkotlin.R
 import ru.gb.weatherkotlin.viewmodel.AppState
 import ru.gb.weatherkotlin.databinding.MainFragmentBinding
@@ -24,6 +25,13 @@ class MainFragment : Fragment() {
 
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding!!
+
+    // всё пока тестово
+    override fun onStart() {
+        super.onStart()
+        binding.mapview.onStart()
+        MapKitFactory.getInstance().onStart();
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,6 +51,14 @@ class MainFragment : Fragment() {
         viewModel.getWeather()
     }
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        // всё пока тестово
+        MapKitFactory.setApiKey("1db7ebe1-a3c9-403c-a09d-43bb97d4f9db");
+        MapKitFactory.initialize(context);
+        // всё пока тестово
+
+    }
     private fun renderData(appState: AppState) {
         when(appState){
             is AppState.Success ->{
@@ -77,5 +93,12 @@ class MainFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    // всё пока тестово
+    override fun onStop() {
+        super.onStop()
+        binding.mapview.onStop()
+        MapKitFactory.getInstance().onStop();
     }
 }
