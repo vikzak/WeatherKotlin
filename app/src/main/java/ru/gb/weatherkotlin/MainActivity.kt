@@ -2,7 +2,8 @@ package ru.gb.weatherkotlin
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ru.gb.weatherkotlin.view.MainFragment
+//import ru.gb.weatherkotlin.view.details.DetailsFragment
+import ru.gb.weatherkotlin.view.main.MainFragment
 
 //private lateinit var binding: MainActivityBinding
 
