@@ -10,6 +10,8 @@ import androidx.lifecycle.ViewModelProvider
 import com.google.android.material.snackbar.Snackbar
 import ru.gb.weatherkotlin.R
 import ru.gb.weatherkotlin.databinding.FragmentMainBinding
+import ru.gb.weatherkotlin.model.Weather
+import ru.gb.weatherkotlin.view.details.DetailsFragment
 import ru.gb.weatherkotlin.viewmodel.AppState
 import ru.gb.weatherkotlin.viewmodel.MainViewModel
 
@@ -18,9 +20,32 @@ class MainFragment : Fragment() {
     private val binding get() = _binding!!
 
     private lateinit var viewModel: MainViewModel
-    private val adapter = MainFragmentAdapter()
+    //private val adapter = MainFragmentAdapter()
+
+    private val adapter = MainFragmentAdapter(object : OnItemViewClickListener {
+        override fun onItemViewClick(weather: Weather) {
+        val manager = activity?.supportFragmentManager
+            if (manager != null) {
+            val bundle = Bundle()
+                bundle.putParcelable(DetailsFragment.BUNDLE_EXTRA, weather)
+                manager.beginTransaction()
+                    .add(R.id.container, DetailsFragment.newInstance(bundle))
+                    .addToBackStack("")
+                    .commitAllowingStateLoss()
+        }
+        }
+    })
+
     private var isDataSetRus: Boolean = true
 
+    interface OnItemViewClickListener {
+        fun onItemViewClick(weather: Weather)
+    }
+
+    override fun onDestroy() {
+        adapter.removeListener()
+        super.onDestroy()
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
