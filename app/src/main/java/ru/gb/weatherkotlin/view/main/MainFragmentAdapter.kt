@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import ru.gb.weatherkotlin.R
 import ru.gb.weatherkotlin.model.Weather
 
-class MainFragmentAdapter(private var onItemViewClickListener:
-                          MainFragment.OnItemViewClickListener?) :
+class MainFragmentAdapter(
+    private var onItemViewClickListener:
+    MainFragment.OnItemViewClickListener?
+) :
     RecyclerView.Adapter<MainFragmentAdapter.MainViewHolder>() {
 
     private var weatherData: List<Weather> = listOf()
@@ -24,7 +25,7 @@ class MainFragmentAdapter(private var onItemViewClickListener:
 
     fun setWeather(data: List<Weather>) {
         weatherData = data
-        notifyDataSetChanged ()
+        notifyDataSetChanged()
     }
 
     fun removeListener() {
@@ -37,7 +38,8 @@ class MainFragmentAdapter(private var onItemViewClickListener:
     ): MainViewHolder {
         return MainViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.fragment_main_recycler_item, parent, false) as View)
+                .inflate(R.layout.fragment_main_recycler_item, parent, false) as View
+        )
     }
 
     override fun onBindViewHolder(holder: MainViewHolder, position: Int) {
@@ -51,10 +53,12 @@ class MainFragmentAdapter(private var onItemViewClickListener:
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
         fun bind(weather: Weather) {
+            itemView.apply {
+                findViewById<TextView>(
+                    R.id.mainFragmentRecyclerItemTextView)
+                    .text = weather.city.city
+                setOnClickListener { onItemViewClickListener?.onItemViewClick(weather) }
 
-            itemView.findViewById<TextView>(R.id.mainFragmentRecyclerItemTextView).text =
-                weather.city.city
-            itemView.setOnClickListener {onItemViewClickListener?.onItemViewClick(weather)
             }
         }
     }
