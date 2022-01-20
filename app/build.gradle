@@ -38,13 +38,19 @@ android {
 dependencies {
 
     implementation 'androidx.core:core-ktx:1.7.0'
+    // desing
     implementation 'androidx.appcompat:appcompat:1.4.0'
     implementation 'com.google.android.material:material:1.4.0'
     implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
     implementation 'com.google.android.material:material:1.1.0'
+    // live data
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.0'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.0'
+    // google map
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
+    //gson
+    implementation 'com.google.code.gson:gson:2.8.5'
+
     // Облегчённая библиотека, содержит только карту, слой пробок,
     // LocationManager, UserLocationLayer и возможность скачивать оффлайн карты (только в платной версии).
     implementation 'com.yandex.android:maps.mobile:4.0.0-lite'
