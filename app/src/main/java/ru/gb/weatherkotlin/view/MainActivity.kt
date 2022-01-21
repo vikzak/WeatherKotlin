@@ -1,7 +1,8 @@
-package ru.gb.weatherkotlin
+package ru.gb.weatherkotlin.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import ru.gb.weatherkotlin.R
 import ru.gb.weatherkotlin.databinding.MainActivityBinding
 //import ru.gb.weatherkotlin.view.details.DetailsFragment
 import ru.gb.weatherkotlin.view.main.MainFragment
@@ -12,16 +13,14 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = MainActivityBinding.inflate(getLayoutInflater())
-        val view = binding.getRoot()
-        setContentView(view)
-
-            //setContentView(R.layout.main_activity)
+        binding = MainActivityBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+        //binding.ok.setOnClickListener(clickListener)
         if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
+            supportFragmentManager
+                .beginTransaction()
                 .replace(R.id.container, MainFragment.newInstance())
-                .commitAllowingStateLoss()
-                //.commit()
+                .commit()
         }
     }
 }
