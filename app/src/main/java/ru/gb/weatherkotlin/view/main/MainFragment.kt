@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -22,6 +23,7 @@ import kotlin.random.Random
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
     private val binding get() = _binding!!
+    private var isDataSetRus: Boolean = true
 
 //    private lateinit var viewModel: MainViewModel
 //    private var isDataSetRus: Boolean = true
@@ -42,7 +44,7 @@ class MainFragment : Fragment() {
     private val viewModel: MainViewModel by lazy {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
-    private var isDataSetRus: Boolean = true
+
     private val adapter = MainFragmentAdapter(object : OnItemViewClickListener {
         override fun onItemViewClick(weather: Weather) {
             activity?.supportFragmentManager?.apply {
@@ -51,7 +53,7 @@ class MainFragment : Fragment() {
                         putParcelable(DetailsFragment.BUNDLE_EXTRA, weather)
                     }))
                     .addToBackStack("")
-                    .commitAllowingStateLoss()
+                    .commit()
             }
         }
     })
@@ -83,16 +85,6 @@ class MainFragment : Fragment() {
         viewModel.getWeatherFromLocalSourceRus()
     }
 
-    //    private fun changeWeatherDataSet() {
-//        if (isDataSetRus) {
-//            viewModel.getWeatherFromLocalSourceWorld()
-//            binding.mainFragmentFAB.setImageResource(R.drawable.ic_baseline_outlined_flag_24)
-//        } else {
-//            viewModel.getWeatherFromLocalSourceRus()
-//            binding.mainFragmentFAB.setImageResource(R.drawable.ic_baseline_outlined_flag_24)
-//        }
-//        isDataSetRus = !isDataSetRus
-//    }
     private fun changeWeatherDataSet() =
         if (isDataSetRus) {
             viewModel.getWeatherFromLocalSourceWorld()
@@ -112,41 +104,26 @@ class MainFragment : Fragment() {
     }
 
     private fun renderData(appState: AppState) {
-        val temp = Random.nextBoolean()
+        // val temp = Random.nextBoolean()
+        // val temp = true
         when (appState) {
             is AppState.Success -> {
-                if (temp){
-                    binding.mainFragmentLoadingLayout.visibility = View.GONE
-                    adapter.setWeather(appState.weatherData)
-                } else {
-                    mainFragmentLoadingLayout.visibility = View.GONE
-                    mainFragmentRootView.showSnackBar(
-                        getString(R.string.error),
-                        getString(R.string.reload),
-                        { viewModel.getWeatherFromLocalSourceRus() })
-                }
+                binding.mainFragmentLoadingLayout.visibility = View.GONE
+                binding.mainFragmentRecyclerView.isVisible = true
+                adapter.setWeather(appState.weatherData)
             }
             is AppState.Loading -> {
                 binding.mainFragmentLoadingLayout.visibility = View.VISIBLE
+                binding.mainFragmentRecyclerView.isVisible = false
             }
 
             is AppState.Error -> {
                 mainFragmentLoadingLayout.visibility = View.GONE
-                mainFragmentRootView.showSnackBar(
-                    getString(R.string.error),
-                    getString(R.string.reload),
-                { viewModel.getWeatherFromLocalSourceRus() })
+                Snackbar
+                    .make(binding.mainFragmentFAB,R.string.error,Snackbar.LENGTH_INDEFINITE)
+                    .setAction(R.string.reload){viewModel.getWeatherFromLocalSourceRus()}
+                    .show()
             }
-//            is AppState.Error -> {
-//                binding.mainFragmentLoadingLayout.visibility = View.GONE
-//                Snackbar.make(
-//                    binding.mainFragmentFAB,
-//                    getString(R.string.error),
-//                    Snackbar.LENGTH_INDEFINITE
-//                )
-//                    .setAction(getString(R.string.reload)) { viewModel.getWeatherFromLocalSourceRus() }
-//                    .show()
-//            }
         }
     }
 
