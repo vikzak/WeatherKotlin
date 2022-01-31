@@ -18,7 +18,6 @@ import ru.gb.weatherkotlin.model.Weather
 import ru.gb.weatherkotlin.view.details.DetailsFragment
 import ru.gb.weatherkotlin.viewmodel.AppState
 import ru.gb.weatherkotlin.viewmodel.MainViewModel
-import kotlin.random.Random
 
 class MainFragment : Fragment() {
     private var _binding: FragmentMainBinding? = null
@@ -82,6 +81,7 @@ class MainFragment : Fragment() {
         binding.mainFragmentFAB.setOnClickListener { changeWeatherDataSet() }
         //viewModel = ViewModelProvider(this).get(MainViewModel::class.java)
         viewModel.getLiveData().observe(viewLifecycleOwner, Observer { renderData(it) })
+
         viewModel.getWeatherFromLocalSourceRus()
     }
 
