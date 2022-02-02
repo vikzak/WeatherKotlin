@@ -16,7 +16,7 @@
             android:enabled="true"
             android:exported="true"/>
         <receiver
-            android:name=".MainBroadcastReceiver"
+            android:name=".broadcast.MainBroadcastReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.CONNECTIVITY_ACTION" />

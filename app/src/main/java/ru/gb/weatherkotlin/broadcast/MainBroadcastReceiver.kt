@@ -1,4 +1,4 @@
-package ru.gb.weatherkotlin
+package ru.gb.weatherkotlin.broadcast
 
 import android.content.BroadcastReceiver
 import android.content.Context

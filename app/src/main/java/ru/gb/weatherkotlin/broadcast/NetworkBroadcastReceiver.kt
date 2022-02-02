@@ -1,4 +1,4 @@
-package ru.gb.weatherkotlin
+package ru.gb.weatherkotlin.broadcast
 
 import android.content.BroadcastReceiver
 import android.content.Context
@@ -6,7 +6,6 @@ import android.content.Intent
 import android.net.ConnectivityManager
 import android.net.NetworkInfo
 import android.widget.Toast
-import ru.gb.weatherkotlin.view.details.DetailsFragment
 
 class NetworkBroadcastReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context?, intent: Intent?) {

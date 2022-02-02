@@ -8,6 +8,7 @@ import android.os.IBinder
 import androidx.annotation.RequiresApi
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.gson.Gson
+import ru.gb.weatherkotlin.BuildConfig
 import ru.gb.weatherkotlin.model.WeatherDTO
 import ru.gb.weatherkotlin.view.details.*
 import java.io.BufferedReader

@@ -5,8 +5,8 @@ import android.content.IntentFilter
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import ru.gb.weatherkotlin.MainBroadcastReceiver
-import ru.gb.weatherkotlin.NetworkBroadcastReceiver
+import ru.gb.weatherkotlin.broadcast.MainBroadcastReceiver
+import ru.gb.weatherkotlin.broadcast.NetworkBroadcastReceiver
 import ru.gb.weatherkotlin.R
 import ru.gb.weatherkotlin.databinding.MainActivityBinding
 //import ru.gb.weatherkotlin.view.details.DetailsFragment
