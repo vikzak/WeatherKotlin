@@ -16,13 +16,6 @@ class MainFragmentAdapter(
 
     private var weatherData: List<Weather> = listOf()
 
-
-//    fun bind(weather: Weather) {
-//        itemView.findViewById<TextView>(R.id.mainFragmentRecyclerItemTextView).text = weather.city.city
-//        itemView.setOnClickListener {
-//            onItemViewClickListener?.onItemViewClick(weather) }
-//    }
-
     fun setWeather(data: List<Weather>) {
         weatherData = data
         notifyDataSetChanged()
