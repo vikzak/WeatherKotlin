@@ -7,8 +7,10 @@ import android.widget.Toast
 
 class MainBroadcastReceiver: BroadcastReceiver() {
     override fun onReceive(context: Context, intent: Intent) {
+        intent.action
+
         StringBuilder().apply {
-            append("СООБЩЕНИЕ ОТ СИСТЕМЫ\n")
+            append("MainBroadcastReceiver\n")
             append("Action: ${intent.action}")
             toString().also {
                 Toast.makeText(context, it, Toast.LENGTH_LONG).show() }

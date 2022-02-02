@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi
 import androidx.localbroadcastmanager.content.LocalBroadcastManager
 import com.google.gson.Gson
 import ru.gb.weatherkotlin.model.WeatherDTO
+import ru.gb.weatherkotlin.view.details.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
 import java.net.MalformedURLException
@@ -21,6 +22,7 @@ const val LONGITUDE_EXTRA = "Longitude"
 private const val REQUEST_GET = "GET"
 private const val REQUEST_TIMEOUT = 10000
 private const val REQUEST_API_KEY = "X-Yandex-API-Key"
+//private const val REQUEST_LANG = "&lang=ru_RU"
 
 class DetailsService(name: String = "DetailService") : IntentService(name) {
 
@@ -45,7 +47,7 @@ class DetailsService(name: String = "DetailService") : IntentService(name) {
     private fun loadWeather(lat: String, lon: String) {
         try {
             val uri =
-                URL("https://api.weather.yandex.ru/v2/informers?lat=${lat}&lon=${lon}")
+                URL("https://api.weather.yandex.ru/v2/forecast?lat=${lat}&lon=${lon}")
             lateinit var urlConnection: HttpsURLConnection
             try {
                 urlConnection = uri.openConnection() as HttpsURLConnection
@@ -80,6 +82,7 @@ class DetailsService(name: String = "DetailService") : IntentService(name) {
             onEmptyResponse()
         } else {
             onSuccessResponse(fact.temp, fact.feels_like, fact.condition)
+
         }
     }
 
