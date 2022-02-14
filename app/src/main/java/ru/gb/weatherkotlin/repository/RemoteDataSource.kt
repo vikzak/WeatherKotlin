@@ -7,6 +7,9 @@ import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Callback
 
+//import okhttp3.logging.HttpLoggingInterceptor
+//import retrofit2.Callback
+
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import ru.gb.weatherkotlin.BuildConfig
@@ -17,14 +20,7 @@ private const val REQUEST_API_KEY = "X-Yandex-API-Key"
 
 class RemoteDataSource {
 
-//    fun getWeatherDetails(requestLink: String, callback: Callback) {
-//        val builder: Request.Builder = Request.Builder().apply {
-//            header(REQUEST_API_KEY, BuildConfig.MY_WEATHER_API_KEY)
-//            url(requestLink)
-//        }
-//        OkHttpClient().newCall(builder.build()).enqueue(callback)
-//    }
-
+    // закомментировал 14-02
     private val weatherApi = Retrofit.Builder()
         .baseUrl("https://api.weather.yandex.ru/")
         .addConverterFactory(
@@ -37,7 +33,7 @@ class RemoteDataSource {
         .create(WeatherAPI::class.java)
 
     fun getWeatherDetails(lat: Double, lon: Double, callback: Callback<WeatherDTO>) {
-        weatherApi.getWeather(lat, lon).enqueue(callback)
+        weatherApi.getWeather(BuildConfig.MY_WEATHER_API_KEY, lat, lon).enqueue(callback)
     }
 
     private fun createOkHttpClient(interceptor: Interceptor): OkHttpClient {
@@ -67,17 +63,17 @@ class RemoteDataSource {
         }
     }
 
-    inner class KeyInterceptorQuery : Interceptor {
-        override fun intercept(chain: Interceptor.Chain): Response {
-            var request = chain.request()
-            val url = request.url().newBuilder()
-                .addQueryParameter("X-Yandex-API-Key", BuildConfig.MY_WEATHER_API_KEY)
-                .build()
-
-            request = request.newBuilder().url(url).build()
-
-            return chain.proceed(request)
-        }
-    }
+//    inner class KeyInterceptorQuery : Interceptor {
+//        override fun intercept(chain: Interceptor.Chain): Response {
+//            var request = chain.request()
+//            val url = request.url().newBuilder()
+//                .addQueryParameter("X-Yandex-API-Key", BuildConfig.MY_WEATHER_API_KEY)
+//                .build()
+//
+//            request = request.newBuilder().url(url).build()
+//
+//            return chain.proceed(request)
+//        }
+//    }
 
 }

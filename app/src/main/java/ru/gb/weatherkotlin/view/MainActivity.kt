@@ -25,12 +25,6 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        val filter = IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION).apply {
-//            addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
-//        }
-        //registerReceiver(receiver, filter)
-        //registerReceiver(receiverNetworkBroadcastReceiver, filter)
-
         if (savedInstanceState == null) {
             showMainFragment()
 //            supportFragmentManager

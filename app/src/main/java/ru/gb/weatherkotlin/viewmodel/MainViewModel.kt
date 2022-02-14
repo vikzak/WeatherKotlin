@@ -9,10 +9,11 @@ import ru.gb.weatherkotlin.repository.RepositoryImpl
 
 
 class MainViewModel(
-    private val liveDataToObserve : MutableLiveData<AppState> = MutableLiveData()) : ViewModel() {
-    private val repository: RepositoryImpl = Repository()
+    private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
+    private val repositoryImpl: Repository = RepositoryImpl()) : ViewModel() {
 
     fun getLiveData() : LiveData<AppState> = liveDataToObserve
+
     fun getWeatherFromLocalSourceRus() = getDataFromLocalSource(isRussian = true)
     fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(isRussian = false)
     fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian = true)
@@ -21,15 +22,27 @@ class MainViewModel(
     private fun getDataFromLocalSource(isRussian: Boolean) {
         liveDataToObserve.value = AppState.Loading
         Thread {
-            sleep(1000)
-            liveDataToObserve.postValue(
-                AppState.Success(
-                    if (isRussian)
-                        repository.getWeatherFromLocalStorageRus()
-                    else
-                        repository.getWeatherFromLocalStorageWorld()
-                )
-            )
+            val repeatLimit = 2
+            var repeatCurrent = 0
+            while (repeatCurrent != repeatLimit) {
+                try {
+                    liveDataToObserve.postValue(
+                        AppState.Success(
+                            if (isRussian) {
+                                repositoryImpl.getWeatherFromLocalStorageRus()
+                            } else {
+                                repositoryImpl.getWeatherFromLocalStorageWorld()
+                            }
+                        ))
+                    break
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    repeatCurrent++
+                    if (repeatCurrent == repeatLimit) {
+                        liveDataToObserve.postValue(AppState.Error(RuntimeException("Ошибка подключения к серверу. Попробуйте еще раз")))
+                    }
+                }
+            }
         }.start()
     }
 }
