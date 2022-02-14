@@ -1,25 +1,24 @@
 package ru.gb.weatherkotlin.viewmodel
 
-//--import retrofit2.Call
-//--import retrofit2.Callback
-//--import retrofit2.Response
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.google.gson.Gson
+
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import ru.gb.weatherkotlin.model.FactDTO
-import ru.gb.weatherkotlin.model.Weather
-import ru.gb.weatherkotlin.model.WeatherDTO
-import ru.gb.weatherkotlin.model.getDefaultCity
+import ru.gb.weatherkotlin.model.*
 import ru.gb.weatherkotlin.repository.DetailsRepository
 import ru.gb.weatherkotlin.repository.DetailsRepositoryImpl
 import ru.gb.weatherkotlin.repository.RemoteDataSource
+import ru.gb.weatherkotlin.utils.convertDtoToModel
+import ru.gb.weatherkotlin.viewmodel.AppState
+import java.io.IOException
 
 private const val SERVER_ERROR = "Ошибка сервера"
 private const val REQUEST_ERROR = "Ошибка запроса на сервер"
 private const val CORRUPTED_DATA = "Неполные данные"
-
 
 class DetailsViewModel(
     val detailsLiveData: MutableLiveData<AppState> = MutableLiveData(),
@@ -33,7 +32,6 @@ class DetailsViewModel(
         detailsRepositoryImpl.getWeatherDetailsFromServer(lat, lon, callBack)
     }
 
-
     private val callBack = object : Callback<WeatherDTO> {
 
         override fun onResponse(call: Call<WeatherDTO>, response: Response<WeatherDTO>) {
@@ -46,7 +44,6 @@ class DetailsViewModel(
                 }
             )
         }
-
 
         override fun onFailure(call: Call<WeatherDTO>, t: Throwable) {
             detailsLiveData.postValue(AppState.Error(Throwable(t.message ?:
@@ -63,9 +60,4 @@ class DetailsViewModel(
             }
         }
     }
-    fun convertDtoToModel(weatherDTO: WeatherDTO): List<Weather> {
-        val fact: FactDTO = weatherDTO.fact!!
-        return listOf(Weather(getDefaultCity(), fact.temp!!, fact.feelLike!!, fact.condition!!))
-    }
 }
-

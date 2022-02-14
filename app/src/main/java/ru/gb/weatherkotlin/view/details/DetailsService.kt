@@ -26,7 +26,6 @@ private const val REQUEST_API_KEY = "X-Yandex-API-Key"
 //private const val REQUEST_LANG = "&lang=ru_RU"
 
 class DetailsService(name: String = "DetailService") : IntentService(name) {
-
     private val broadcastIntent = Intent(DETAILS_INTENT_FILTER)
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -125,5 +124,4 @@ class DetailsService(name: String = "DetailService") : IntentService(name) {
     private fun putLoadResult(result: String) {
         broadcastIntent.putExtra(DETAILS_LOAD_RESULT_EXTRA, result)
     }
-
 }

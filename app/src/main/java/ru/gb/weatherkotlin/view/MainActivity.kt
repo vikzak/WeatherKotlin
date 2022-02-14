@@ -18,32 +18,23 @@ import ru.gb.weatherkotlin.view.main.MainFragment
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: MainActivityBinding
-    //private val receiver = MainBroadcastReceiver()
-    //private val receiverNetworkBroadcastReceiver = NetworkBroadcastReceiver()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = MainActivityBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.main_activity)
         if (savedInstanceState == null) {
             showMainFragment()
-//            supportFragmentManager
-//                .beginTransaction()
-//                .replace(R.id.container, MainFragment.newInstance())
-//                .commit()
         }
     }
 
-    private fun showFragment(fragment: Fragment){
+    private fun showFragment(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
             .commit()
     }
 
-    private fun showMainFragment(){
+    private fun showMainFragment() {
         showFragment(MainFragment.newInstance())
     }
-
-
-
 }

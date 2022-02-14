@@ -20,10 +20,6 @@ class MainFragmentAdapter(private var onItemViewClickListener: OnItemViewClickLi
         notifyDataSetChanged()
     }
 
-    fun removeListener() {
-        onItemViewClickListener = null
-    }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MainViewHolder {
         return MainViewHolder(
             LayoutInflater.from(parent.context)
@@ -37,10 +33,11 @@ class MainFragmentAdapter(private var onItemViewClickListener: OnItemViewClickLi
 
     override fun getItemCount() = weatherData.size
 
-
+    fun removeListener() {
+        onItemViewClickListener = null
+    }
 
     inner class MainViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-
         fun bind(weather: Weather) {
             itemView.apply {
                 findViewById<TextView>(R.id.mainFragmentRecyclerItemTextView).text = weather.city.city
@@ -50,5 +47,4 @@ class MainFragmentAdapter(private var onItemViewClickListener: OnItemViewClickLi
             }
         }
     }
-
 }

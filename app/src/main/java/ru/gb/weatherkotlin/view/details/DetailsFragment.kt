@@ -1,6 +1,7 @@
 package ru.gb.weatherkotlin.view.details
 
 
+import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
@@ -48,8 +49,8 @@ private const val REQUEST_API_KEY = "X-Yandex-API-Key"
 private const val MAIN_LINK = "https://api.weather.yandex.ru/v2/forecast/?"
 
 
-
 class DetailsFragment : Fragment() {
+
     private var _binding: FragmentDetailsBinding? = null
     private val binding get() = _binding!!
     private lateinit var weatherBundle: Weather
@@ -58,8 +59,6 @@ class DetailsFragment : Fragment() {
     private lateinit var coordinates: TextView
     private lateinit var temperature: TextView
     private lateinit var feelsLike: TextView
-    private val viewModel: DetailsViewModel by lazy { ViewModelProvider(this)[DetailsViewModel::class.java] }
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -147,19 +146,9 @@ class DetailsFragment : Fragment() {
         _binding = null
     }
 
-    private fun findsViews() {
-        mainView = binding.mainView
-        city = binding.cityName
-        coordinates = binding.cityCoordinates
-        temperature = binding.temperatureValue
-        feelsLike = binding.feelsLikeValue
+    private val viewModel: DetailsViewModel by lazy {
+        ViewModelProvider(this).get(DetailsViewModel::class.java)
     }
-
-    override fun onDestroy() {
-        super.onDestroy()
-        _binding = null
-    }
-
 
 
 
@@ -215,8 +204,10 @@ class DetailsFragment : Fragment() {
 
     companion object {
         const val BUNDLE_EXTRA = "weather"
-        fun newInstance(bundle: Bundle) = DetailsFragment().also {
-                fragment -> fragment.arguments = bundle
+        fun newInstance(bundle: Bundle): DetailsFragment {
+            val fragment = DetailsFragment()
+            fragment.arguments = bundle
+            return fragment
         }
     }
 

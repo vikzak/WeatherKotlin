@@ -8,6 +8,6 @@ fun View.showSnackBar(
     actionText: String,
     action: (View) -> Unit,
     length: Int = Snackbar.LENGTH_INDEFINITE
-) {
+){
     Snackbar.make(this, text, length).setAction(actionText, action).show()
 }

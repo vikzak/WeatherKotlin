@@ -13,7 +13,6 @@ import kotlinx.android.synthetic.main.fragment_main.*
 import ru.gb.weatherkotlin.R
 import ru.gb.weatherkotlin.databinding.FragmentMainBinding
 import ru.gb.weatherkotlin.model.Weather
-import ru.gb.weatherkotlin.utils.showSnackBar
 import ru.gb.weatherkotlin.utils.showSnackBarWithResources
 import ru.gb.weatherkotlin.view.OnItemViewClickListener
 import ru.gb.weatherkotlin.view.details.DetailsFragment

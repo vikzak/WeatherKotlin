@@ -10,8 +10,7 @@ import ru.gb.weatherkotlin.model.getDefaultCity
 //import com.example.androidwithkotlin.model.WeatherDTO
 //import com.example.androidwithkotlin.model.getDefaultCity
 
-fun convertDtoToModel(weatherDTO: WeatherDTO): List<Weather> {
-    val fact: FactDTO = weatherDTO.fact!!
-    return listOf(Weather(getDefaultCity(), fact.temp!!, fact.feelLike!!,
-        fact.condition!!))
-}
+//fun convertDtoToModel(weatherDTO: WeatherDTO): List<Weather> {
+//    val fact: FactDTO = weatherDTO.fact!!
+//    return listOf(Weather(getDefaultCity(), fact.temp!!, fact.feels_like!!,
+//        fact.condition!!, fact.icon)) }

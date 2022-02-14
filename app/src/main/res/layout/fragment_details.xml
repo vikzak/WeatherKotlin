@@ -15,14 +15,12 @@
             android:id="@+id/cityName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/city_name_margin_top"
             android:textSize="@dimen/text_size_city_name"
             android:textStyle="bold"
-            android:layout_marginTop="@dimen/city_coordinates_margin_top"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ivPicture"
-
-
+            app:layout_constraintTop_toTopOf="parent"
             tools:text="Москва" />
 
         <TextView
@@ -54,15 +52,14 @@
             app:layout_constraintTop_toBottomOf="@+id/weatherIcon"
             tools:text="Облачно" />
 
-        <ImageView
-            android:id="@+id/ivCondition"
-            android:layout_width="0dp"
-            android:layout_height="100dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/weatherCondition"
-            tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="ivCondition" />
+<!--        <ImageView-->
+<!--            android:id="@+id/ivCondition"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/weatherCondition"-->
+<!--            tools:srcCompat="@tools:sample/avatars" />-->
 
 
         <TextView
@@ -116,8 +113,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:srcCompat="@tools:sample/avatars"
-            android:contentDescription="ivPicture" />
+            tools:srcCompat="@tools:sample/avatars" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

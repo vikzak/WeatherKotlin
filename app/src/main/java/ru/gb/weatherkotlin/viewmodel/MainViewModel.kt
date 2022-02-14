@@ -8,21 +8,21 @@ import ru.gb.weatherkotlin.repository.Repository
 import ru.gb.weatherkotlin.repository.RepositoryImpl
 
 
-class MainViewModel(
-    private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
-    private val repositoryImpl: Repository = RepositoryImpl()) : ViewModel() {
+class MainViewModel(private val liveDataToObserve: MutableLiveData<AppState> = MutableLiveData(),
+                    private val repositoryImpl: Repository = RepositoryImpl()) : ViewModel() {
 
-    fun getLiveData() : LiveData<AppState> = liveDataToObserve
+    fun getLiveData() = liveDataToObserve
 
-    fun getWeatherFromLocalSourceRus() = getDataFromLocalSource(isRussian = true)
-    fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(isRussian = false)
-    fun getWeatherFromRemoteSource() = getDataFromLocalSource(isRussian = true)
+    fun getWeatherFromLocalSourceRus() = getDataFromLocalSource(true)
 
+    fun getWeatherFromLocalSourceWorld() = getDataFromLocalSource(false)
+
+    fun getWeatherFromRemoteSource() = getDataFromLocalSource(true)
 
     private fun getDataFromLocalSource(isRussian: Boolean) {
         liveDataToObserve.value = AppState.Loading
         Thread {
-            val repeatLimit = 2
+            var repeatLimit = 2
             var repeatCurrent = 0
             while (repeatCurrent != repeatLimit) {
                 try {
