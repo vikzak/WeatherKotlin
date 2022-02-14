@@ -4,5 +4,5 @@ import com.google.gson.annotations.SerializedName
 
 data class WeatherDTO(
     @SerializedName("fact")
-    val factical: FactDTO?
+    val fact: FactDTO?
 )

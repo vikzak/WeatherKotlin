@@ -45,7 +45,7 @@ class DetailsViewModel(
         }
 
         private fun checkResponse(serverResponse: WeatherDTO): AppState {
-            val fact = serverResponse.factical
+            val fact = serverResponse.fact
             return if (fact == null || fact.temp == null || fact.feels_like == null || fact.condition.isNullOrEmpty()) {
                 AppState.Error(Throwable(CORRUPTED_DATA))
             } else {
@@ -62,7 +62,7 @@ class DetailsViewModel(
 
 
     private fun convertDtoToModel(weatherDTO: WeatherDTO): List<Weather> {
-        val fact: FactDTO = weatherDTO.factical!!
+        val fact: FactDTO = weatherDTO.fact!!
         return listOf(Weather(getDefaultCity(), fact.temp!!, fact.feels_like!!, fact.condition!!, fact.icon!!))
     }
 }

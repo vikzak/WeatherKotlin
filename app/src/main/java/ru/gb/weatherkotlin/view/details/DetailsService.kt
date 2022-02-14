@@ -78,7 +78,7 @@ class DetailsService(name: String = "DetailService") : IntentService(name) {
         return reader.lines().collect(Collectors.joining("\n")) }
 
     private fun onResponse(weatherDTO: WeatherDTO) {
-        val fact = weatherDTO.factical
+        val fact = weatherDTO.fact
         if (fact == null) {
             onEmptyResponse()
         } else {
