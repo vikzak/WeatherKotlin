@@ -27,23 +27,40 @@
             android:id="@+id/cityCoordinates"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/city_coordinates_margin_top"
+            android:layout_marginTop="@dimen/margin_5_dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cityName"
             tools:text="lt/ln: 55.755826, 37.617299900000035" />
 
+        <ImageView
+            android:id="@+id/weatherIcon"
+            android:layout_width="@dimen/weather_icon_width"
+            android:layout_height="@dimen/weather_icon_height"
+            android:layout_marginTop="@dimen/margin_15_dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cityCoordinates"
+            tools:srcCompat="@drawable/ic_bkn_d" />
+
         <TextView
             android:id="@+id/weatherCondition"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/margin_15_dp"
-            android:textSize="@dimen/feels_like_text_size"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cityCoordinates"
+            app:layout_constraintTop_toBottomOf="@+id/weatherIcon"
             tools:text="Облачно" />
+
+<!--        <ImageView-->
+<!--            android:id="@+id/ivCondition"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@+id/weatherCondition"-->
+<!--            tools:srcCompat="@tools:sample/avatars" />-->
+
 
         <TextView
             android:id="@+id/temperatureLabel"
@@ -51,6 +68,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/margin_15_dp"
             android:text="@string/temperature_label"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/weatherCondition" />
@@ -88,6 +106,15 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/feelsLikeLabel"
             tools:text="-23" />
+
+        <ImageView
+            android:id="@+id/ivPicture"
+            android:layout_width="0dp"
+            android:layout_height="100dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

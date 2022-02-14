@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="ru.gb.weatherkotlin">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -11,15 +14,48 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherKotlin">
+<!--        <service-->
+<!--            android:name=".DetailsService"-->
+<!--            android:enabled="true"-->
+<!--            android:exported="true"/>-->
+<!--        <receiver-->
+<!--            android:name=".broadcast.MainBroadcastReceiver"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.CONNECTIVITY_ACTION" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
+        <service
+            android:name=".view.details.DetailsService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".view.details.DetailsService"
+            android:enabled="true"
+            android:exported="true" />
+
+<!--        <receiver-->
+<!--            android:name=".view.MainBroadcastReceiver"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.LOCALE_CHANGED" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
+
         <activity
             android:name=".view.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
+                <!--                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />-->
+                <!--                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />-->
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"
+        tools:ignore="ManifestOrder" />
 
 </manifest>
