@@ -5,6 +5,7 @@ import android.content.IntentFilter
 import android.net.ConnectivityManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.fragment.app.Fragment
 //import ru.gb.weatherkotlin.broadcast.MainBroadcastReceiver
 //import ru.gb.weatherkotlin.broadcast.NetworkBroadcastReceiver
 import ru.gb.weatherkotlin.R
@@ -31,15 +32,24 @@ class MainActivity : AppCompatActivity() {
         //registerReceiver(receiverNetworkBroadcastReceiver, filter)
 
         if (savedInstanceState == null) {
-            supportFragmentManager
-                .beginTransaction()
-                .replace(R.id.container, MainFragment.newInstance())
-                .commit()
+            showMainFragment()
+//            supportFragmentManager
+//                .beginTransaction()
+//                .replace(R.id.container, MainFragment.newInstance())
+//                .commit()
         }
     }
-    override fun onDestroy() {
-        //unregisterReceiver(receiver)
-        //unregisterReceiver(receiverNetworkBroadcastReceiver)
-        super.onDestroy()
+
+    private fun showFragment(fragment: Fragment){
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, fragment)
+            .commit()
     }
+
+    private fun showMainFragment(){
+        showFragment(MainFragment.newInstance())
+    }
+
+
+
 }

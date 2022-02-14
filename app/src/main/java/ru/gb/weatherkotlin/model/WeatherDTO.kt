@@ -1,5 +1,8 @@
 package ru.gb.weatherkotlin.model
 
+import com.google.gson.annotations.SerializedName
+
 data class WeatherDTO(
-    val fact: FactDTO?
+    @SerializedName("fact")
+    val factical: FactDTO?
 )

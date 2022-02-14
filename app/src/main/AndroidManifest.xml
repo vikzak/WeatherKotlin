@@ -4,6 +4,8 @@
     package="ru.gb.weatherkotlin">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:allowBackup="true"
@@ -21,6 +23,23 @@
 <!--            android:exported="true">-->
 <!--            <intent-filter>-->
 <!--                <action android:name="android.intent.action.CONNECTIVITY_ACTION" />-->
+<!--            </intent-filter>-->
+<!--        </receiver>-->
+
+        <service
+            android:name=".view.details.DetailsService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".view.details.DetailsService"
+            android:enabled="true"
+            android:exported="true" />
+
+<!--        <receiver-->
+<!--            android:name=".view.MainBroadcastReceiver"-->
+<!--            android:exported="true">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.LOCALE_CHANGED" />-->
 <!--            </intent-filter>-->
 <!--        </receiver>-->
 

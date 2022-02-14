@@ -7,13 +7,16 @@ import kotlinx.android.parcel.Parcelize
 data class Weather(
     val city: City = getDefaultCity(),
     val temperature: Int = 0,
-    val feelsLike: Int = 0
+    val feelsLike: Int = 0,
+    val condition: String = "sunny",
+    val icon: String? = "bkn_n"
 ) : Parcelable
 
 
 fun getDefaultCity() = City("Москва", 55.755826, 37.617299900000035)
 
-fun getWorldCities() = listOf(
+fun getWorldCities(): List<Weather> {
+    return listOf(
         Weather(City("Лондон", 51.5085300, -0.1257400), 1, 2),
         Weather(City("Токио", 35.6895000, 139.6917100), 3, 4),
         Weather(City("Париж", 48.8534100, 2.3488000), 5, 6),
@@ -25,13 +28,17 @@ fun getWorldCities() = listOf(
         Weather(City("Киев", 50.4501, 30.523400000000038), 17, 18),
         Weather(City("Пекин", 39.90419989999999, 116.40739630000007), 19, 20)
     )
+}
 
-fun getRussianCities() = listOf(
+fun getRussianCities(): List<Weather> {
+    return listOf(
         Weather(City("Москва", 55.755826, 37.617299900000035), 1, 2),
         Weather(City("Санкт-Петербург", 59.9342802, 30.335098600000038), 3, 3),
         Weather(City("Новосибирск", 55.00835259999999, 82.93573270000002), 5, 6),
-        Weather(City("Екатеринбург", 56.83892609999999, 60.60570250000001), 7,
-            8),
+        Weather(
+            City("Екатеринбург", 56.83892609999999, 60.60570250000001), 7,
+            8
+        ),
         Weather(City("Нижний Новгород", 56.2965039, 43.936059), 9, 10),
         Weather(City("Казань", 55.8304307, 49.06608060000008), 11, 12),
         Weather(City("Челябинск", 55.1644419, 61.4368432), 13, 14),
@@ -41,5 +48,11 @@ fun getRussianCities() = listOf(
         Weather(City("Старица", 56.514927, 34.933586), 19, 20),
         Weather(City("Дегунино", 56.327595, 34.889146), 19, 20)
     )
+}
 //56.327595, 34.889146 - Дегунино
 //56.514927, 34.933586 - Старица
+
+fun convertDtoToModel(weatherDTO: WeatherDTO): List<Weather> {
+    val fact: FactDTO = weatherDTO.factical!!
+    return listOf(Weather(getDefaultCity(), fact.temp!!, fact.feels_like!!, fact.condition!!))
+}
