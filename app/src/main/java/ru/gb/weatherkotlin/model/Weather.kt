@@ -47,8 +47,3 @@ fun getRussianCities() = listOf(
     )
 //56.327595, 34.889146 - Дегунино
 //56.514927, 34.933586 - Старица
-
-//fun convertDtoToModel(weatherDTO: WeatherDTO): List<Weather> {
-//    val fact: FactDTO = weatherDTO.fact!!
-//    return listOf(Weather(getDefaultCity(), fact.temp!!, fact.feels_like!!, fact.condition!!))
-//}

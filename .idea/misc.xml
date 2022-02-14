@@ -5,6 +5,7 @@
       <map>
         <entry key="../../../../layout/custom_preview.xml" value="0.14479166666666668" />
         <entry key="app/src/main/res/drawable/ic_baseline_outlined_flag_24.xml" value="0.14583333333333334" />
+        <entry key="app/src/main/res/drawable/ic_bkn_d.xml" value="0.1285" />
         <entry key="app/src/main/res/layout/fragment_details.xml" value="0.25" />
         <entry key="app/src/main/res/layout/fragment_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_main_recycler_item.xml" value="0.25" />

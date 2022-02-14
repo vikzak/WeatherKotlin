@@ -6,3 +6,4 @@ data class WeatherDTO(
     @SerializedName("fact")
     val fact: FactDTO?
 )
+

@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
+import com.github.twocoffeesoneteam.glidetovectoryou.GlideToVectorYou
 import com.google.android.material.snackbar.Snackbar
 import com.google.gson.Gson
 import kotlinx.android.synthetic.main.fragment_details.*
@@ -70,6 +71,7 @@ class DetailsFragment : Fragment() {
     ): View {
         _binding = FragmentDetailsBinding.inflate(inflater, container, false)
         val view = binding.root
+        findsViews()
         return view
         //return inflater.inflate(R.layout.fragment_details, container, false)
     }
@@ -113,6 +115,33 @@ class DetailsFragment : Fragment() {
         }
     }
 
+    private fun setWeather(weather: Weather) {
+        val city = weatherBundle.city
+        binding.cityName.text = city.city
+        binding.cityCoordinates.text = String.format(
+            getString(R.string.city_coordinates),
+            city.lat.toString(),
+            city.lon.toString()
+        )
+        binding.temperatureValue.text = weather.temperature.toString()
+        binding.feelsLikeValue.text = weather.feelsLike.toString()
+        binding.weatherCondition.text = tranclate(weather.condition)
+
+        Glide.with(requireContext())
+            .load("https://freepngimg.com/thumb/city/36275-3-city-hd.png")
+            //.circleCrop()
+            .into(binding.ivPicture)
+        weather.icon?.let {
+            GlideToVectorYou.justLoadImage(
+                activity,
+                Uri.parse("https://yastatic.net/weather/i/icons/blueye/color/svg/${it}.svg"),
+                weatherIcon
+            )
+        }
+    }
+
+
+
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
@@ -131,68 +160,6 @@ class DetailsFragment : Fragment() {
         _binding = null
     }
 
-
-
-
-
-
-
-//    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-//        super.onViewCreated(view, savedInstanceState)
-//        weatherBundle = arguments?.getParcelable(BUNDLE_EXTRA) ?: Weather()
-//        binding.mainView.visibility = View.GONE
-//        binding.loadingLayout.visibility = View.VISIBLE
-//        //viewModel.detailsLiveData.observe(viewLifecycleOwner, Observer { renderData(it) })
-//        getWeather()
-//
-////        weatherBundle = arguments?.getParcelable(BUNDLE_EXTRA) ?: Weather()
-////        getWeather()
-//    }
-
-
-
-
-
-    //    private fun renderData(appState: AppState) {//weatherDTO: WeatherDTO
-//        when (appState) {
-//            is AppState.Success -> {
-//                binding.mainView.visibility = View.VISIBLE
-//                binding.loadingLayout.visibility = View.GONE
-//                setWeather(appState.weatherData[0])
-//            }
-//            is AppState.Loading -> {
-//                binding.mainView.visibility = View.GONE
-//                binding.loadingLayout.visibility = View.VISIBLE
-//            }
-//            is AppState.Error -> {
-//                binding.mainView.visibility = View.VISIBLE
-//                binding.loadingLayout.visibility = View.GONE
-//                binding.mainView.showSnackBar(
-//                    getString(R.string.error),
-//                    getString(R.string.reload),
-//                    { getWeather() })
-//            }
-//        }
-//
-////        binding.mainView.visibility = View.VISIBLE
-////        binding.loadingLayout.visibility = View.GONE
-////        val fact = weatherDTO.fact
-////        if (fact == null || fact.temp == null || fact.feels_like == null || fact.condition.isNullOrEmpty()) {
-////            TODO(PROCESS_ERROR) }
-////        else {
-////            val city = weatherBundle.city
-////            binding.cityName.text = city.city
-////            binding.cityCoordinates.text = String.format(
-////                getString(R.string.city_coordinates),
-////                city.lat.toString(),
-////                city.lon.toString()
-////            )
-////            binding.temperatureValue.text = fact.temp.toString()
-////            binding.feelsLikeValue.text = fact.feels_like.toString()
-////            binding.weatherCondition.text = fact.condition.toString()
-////            //binding.weatherCondition.text = tranclate(fact.condition)
-////        }
-//    }
 
 
 
@@ -231,28 +198,20 @@ class DetailsFragment : Fragment() {
     }
 
 
-    private fun setWeather(weather: Weather) {
-        val city = weatherBundle.city
-        binding.cityName.text = city.city
-        binding.cityCoordinates.text = String.format(
-            getString(R.string.city_coordinates),
-            city.lat.toString(),
-            city.lon.toString()
-        )
-        binding.temperatureValue.text = weather.temperature.toString()
-        binding.feelsLikeValue.text = weather.feelsLike.toString()
-        binding.weatherCondition.text = weather.condition
 
-        Glide.with(requireContext())
-            .load("https://freepngimg.com/thumb/city/36275-3-city-hd.png")
-            .circleCrop()
-            .into(binding.ivPicture)
+
+    private fun findsViews() {
+        mainView = binding.mainView
+        city = binding.cityName
+        coordinates = binding.cityCoordinates
+        temperature = binding.temperatureValue
+        feelsLike = binding.feelsLikeValue
     }
 
-//    override fun onDestroy() {
-//        super.onDestroy()
-//        _binding = null
-//    }
+    override fun onDestroy() {
+        super.onDestroy()
+        _binding = null
+    }
 
     companion object {
         const val BUNDLE_EXTRA = "weather"

@@ -84,7 +84,7 @@ class DetailsService(name: String = "DetailService") : IntentService(name) {
         if (fact == null) {
             onEmptyResponse()
         } else {
-            onSuccessResponse(fact.temp, fact.feelLike, fact.condition)
+            onSuccessResponse(fact.temp, fact.feels_like, fact.condition)
         }
     }
 
