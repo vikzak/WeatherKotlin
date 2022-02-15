@@ -80,14 +80,14 @@ class DetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         weatherBundle = arguments?.getParcelable<Weather>(BUNDLE_EXTRA) ?: Weather()
         binding.mainView.visibility = View.GONE
-        binding.loadingLayout.visibility = View.VISIBLE
+        binding.includedLoadingLayout.loadingLayout.visibility = View.VISIBLE
         viewModel.detailsLiveData.observe(viewLifecycleOwner, Observer { renderData(it) })
         getWeather()
     }
 
     private fun getWeather() {
         binding.mainView.visibility = View.GONE
-        binding.loadingLayout.visibility = View.VISIBLE
+        binding.includedLoadingLayout.loadingLayout.visibility = View.VISIBLE
         viewModel.getWeatherFromRemoteSource(weatherBundle.city.lat, weatherBundle.city.lon)
     }
 
@@ -95,16 +95,16 @@ class DetailsFragment : Fragment() {
         when (appState) {
             is AppState.Success -> {
                 binding.mainView.visibility = View.VISIBLE
-                binding.loadingLayout.visibility = View.GONE
+                binding.includedLoadingLayout.loadingLayout.visibility = View.GONE
                 setWeather(appState.weatherData[0])
             }
             is AppState.Loading -> {
                 binding.mainView.visibility = View.GONE
-                binding.loadingLayout.visibility = View.VISIBLE
+                binding.includedLoadingLayout.loadingLayout.visibility = View.VISIBLE
             }
             is AppState.Error -> {
                 binding.mainView.visibility = View.VISIBLE
-                binding.loadingLayout.visibility = View.GONE
+                binding.includedLoadingLayout.loadingLayout.visibility = View.GONE
                 binding.mainView.showSnackBar(
                     getString(R.string.error),
                     getString(R.string.reload),
