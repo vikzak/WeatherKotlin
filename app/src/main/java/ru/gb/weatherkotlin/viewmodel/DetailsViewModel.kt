@@ -8,10 +8,13 @@ import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import ru.gb.weatherkotlin.app.App.Companion.getHistoryDao
 import ru.gb.weatherkotlin.model.*
 import ru.gb.weatherkotlin.repository.DetailsRepository
 import ru.gb.weatherkotlin.repository.DetailsRepositoryImpl
+import ru.gb.weatherkotlin.repository.LocalRepositoryImpl
 import ru.gb.weatherkotlin.repository.RemoteDataSource
+import ru.gb.weatherkotlin.room.LocalRepository
 import ru.gb.weatherkotlin.utils.convertDtoToModel
 import ru.gb.weatherkotlin.viewmodel.AppState
 import java.io.IOException
@@ -20,16 +23,26 @@ private const val SERVER_ERROR = "Ошибка сервера"
 private const val REQUEST_ERROR = "Ошибка запроса на сервер"
 private const val CORRUPTED_DATA = "Неполные данные"
 
+//class DetailsViewModel(
+//    val detailsLiveData: MutableLiveData<AppState> = MutableLiveData(),
+//    private val detailsRepositoryImpl: DetailsRepository = DetailsRepositoryImpl(RemoteDataSource())
+//) : ViewModel() {
 class DetailsViewModel(
     val detailsLiveData: MutableLiveData<AppState> = MutableLiveData(),
-    private val detailsRepositoryImpl: DetailsRepository = DetailsRepositoryImpl(RemoteDataSource())
+    private val detailsRepository: DetailsRepository = DetailsRepositoryImpl(RemoteDataSource()),
+    private val historyRepository: LocalRepository = LocalRepositoryImpl(getHistoryDao())
 ) : ViewModel() {
+
 
     fun getLiveData() = detailsLiveData
 
     fun getWeatherFromRemoteSource(lat: Double, lon: Double) {
         detailsLiveData.value = AppState.Loading
-        detailsRepositoryImpl.getWeatherDetailsFromServer(lat, lon, callBack)
+        detailsRepository.getWeatherDetailsFromServer(lat, lon, callBack)
+    }
+
+    fun saveCityToDB(weather: Weather) {
+        historyRepository.saveEntity(weather)
     }
 
     private val callBack = object : Callback<WeatherDTO> {
@@ -46,8 +59,7 @@ class DetailsViewModel(
         }
 
         override fun onFailure(call: Call<WeatherDTO>, t: Throwable) {
-            detailsLiveData.postValue(AppState.Error(Throwable(t.message ?:
-            REQUEST_ERROR)))
+            detailsLiveData.postValue(AppState.Error(Throwable(t.message ?: REQUEST_ERROR)))
         }
 
         private fun checkResponse(serverResponse: WeatherDTO): AppState {

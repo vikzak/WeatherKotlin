@@ -68,7 +68,10 @@ dependencies {
     kapt 'com.github.bumptech.glide:compiler:4.11.0'
 
     //GlideToVectorYou
-
+    // импортировал в проект
+    //Room
+    implementation 'androidx.room:room-runtime:2.2.5'
+    kapt 'androidx.room:room-compiler:2.2.5'
 
 
 }

@@ -23,6 +23,7 @@ import okhttp3.*
 import ru.gb.weatherkotlin.BuildConfig
 import ru.gb.weatherkotlin.R
 import ru.gb.weatherkotlin.databinding.FragmentDetailsBinding
+import ru.gb.weatherkotlin.model.City
 import ru.gb.weatherkotlin.model.Weather
 import ru.gb.weatherkotlin.model.WeatherDTO
 import ru.gb.weatherkotlin.utils.showSnackBar
@@ -116,6 +117,7 @@ class DetailsFragment : Fragment() {
 
     private fun setWeather(weather: Weather) {
         val city = weatherBundle.city
+        saveCity(city, weather)
         binding.cityName.text = city.city
         binding.cityCoordinates.text = String.format(
             getString(R.string.city_coordinates),
@@ -137,6 +139,15 @@ class DetailsFragment : Fragment() {
                 weatherIcon
             )
         }
+    }
+
+    private fun saveCity(city: City, weather: Weather ){
+        viewModel.saveCityToDB( Weather(
+            city,
+            weather.temperature,
+            weather.feelsLike,
+            weather.condition
+        ) )
     }
 
 
