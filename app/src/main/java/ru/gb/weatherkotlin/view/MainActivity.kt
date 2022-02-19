@@ -39,24 +39,29 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_screen_menu, menu)
+        menuInflater.inflate(R.menu.menu_content_provider, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         return when (item.itemId) {
             R.id.menu_history -> {
-                supportFragmentManager.apply {
-                    beginTransaction()
-                        .add(
-                            R.id.container,
-                            HistoryFragment.newInstance()
-                        )
-                        .addToBackStack("")
-                        .commitAllowingStateLoss()
-                }
+                showFragmentWithBackStack(HistoryFragment.newInstance())
+                true
+            }
+            R.id.menu_content_provider ->{
+                showFragmentWithBackStack(ContentProviderFragment.newInstance())
                 true
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+
+    private fun showFragmentWithBackStack(fragment: Fragment) {
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.container, fragment)
+            .addToBackStack(null)
+            .commit()
     }
 }
