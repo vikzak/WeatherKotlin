@@ -5,7 +5,6 @@ import android.content.ContentResolver
 import android.content.Context
 import android.content.pm.PackageManager
 import android.database.Cursor
-import android.net.Uri
 import android.os.Bundle
 import android.provider.ContactsContract
 import android.view.LayoutInflater
@@ -49,7 +48,7 @@ class ContentProviderFragment : Fragment() {
                 shouldShowRequestPermissionRationale(Manifest.permission.READ_CONTACTS) -> {
                     AlertDialog.Builder(it)
                         .setTitle("Доступ к контактам")
-                        .setMessage("Объяснение")
+                        .setMessage("Доступ к контактом необходим для отображения в приложении")
                         .setPositiveButton("Предоставить доступ") { _, _ ->
                             requestPermission()
                         }
@@ -82,7 +81,7 @@ class ContentProviderFragment : Fragment() {
                     context?.let {
                         AlertDialog.Builder(it)
                             .setTitle("Доступ к контактам")
-                            .setMessage("Объяснение")
+                            .setMessage("Доступ к контактом необходим для отображения в приложении")
                             .setNegativeButton("Закрыть") { dialog, _ -> dialog.dismiss() }
                             .create()
                             .show()
@@ -107,6 +106,7 @@ class ContentProviderFragment : Fragment() {
             )
 
             cursorWithContacts?.let { cursor ->
+                addView(it,"всего " + cursor.count.toString() + " контактов \n")
                 for (i in 0..cursor.count) {
                     // Переходим на позицию в Cursor
                     if (cursor.moveToPosition(i)) {
@@ -114,14 +114,14 @@ class ContentProviderFragment : Fragment() {
                         val name =
                             cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
                         addView(it, name)
-
-                        val phoneNum =
-                            cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))
-                        addView(it, phoneNum)
-                        //addView(it,cursor.getString(cursor.getColumnIndex(CITY)))
+//
+//                        val phoneNum =
+//                            cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))
+//                        addView(it, phoneNum)
                     }
                 }
             }
+
             cursorWithContacts?.close()
         }
 
@@ -132,7 +132,7 @@ class ContentProviderFragment : Fragment() {
             .addView(AppCompatTextView(context)
                 .apply {
             text = textToShow
-            textSize = resources.getDimension(R.dimen.main_container_text_size)
+            textSize = resources.getDimension(R.dimen.contect_text_size)
         })
     }
 

@@ -15,6 +15,7 @@
     <dimen name="margin_5_dp">5dp</dimen>
 
     <dimen name="main_container_text_size">10sp</dimen>
+    <dimen name="contect_text_size">5sp</dimen>
 
     <dimen name="weather_icon_width">150dp</dimen>
     <dimen name="weather_icon_height">150dp</dimen>
