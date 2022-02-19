@@ -10,6 +10,7 @@ import android.provider.ContactsContract
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
@@ -113,11 +114,38 @@ class ContentProviderFragment : Fragment() {
                         // Берём из Cursor столбец с именем
                         val name =
                             cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.DISPLAY_NAME))
-                        addView(it, name)
-//
-//                        val phoneNum =
-//                            cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))
-//                        addView(it, phoneNum)
+                        val idResults =
+                            cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts.HAS_PHONE_NUMBER))
+                        val idResultHold = idResults.toInt()
+                        val cursor2: Cursor?
+                        val contactId =
+                            cursor.getString(cursor.getColumnIndex(ContactsContract.Contacts._ID))
+
+                        if (idResultHold == 1) {
+                            cursor2 = contentResolver.query(
+                                ContactsContract.CommonDataKinds.Phone.CONTENT_URI,
+                                null,
+                                ContactsContract.CommonDataKinds.Phone.CONTACT_ID + " = " + contactId,
+                                null,
+                                null
+                            )
+                            // a contact may have multiple phone numbers
+                            val numbers = mutableSetOf<String>()
+                            cursor2?.let {
+                                while (cursor2.moveToNext()) {
+                                    val phoneNumber =
+                                        cursor2.getString(
+                                            cursor2.getColumnIndex(ContactsContract.CommonDataKinds.Phone.NUMBER)
+                                        ).replace("-", "").replace(
+                                            " ",
+                                            ""
+                                        )
+
+                                    numbers.add(phoneNumber)
+                                }
+                                cursor2.close()
+                        }
+                            addView(it, "$name \n $numbers")
                     }
                 }
             }
@@ -125,7 +153,7 @@ class ContentProviderFragment : Fragment() {
             cursorWithContacts?.close()
         }
 
-    }
+    }}
 
     private fun addView(context: Context, textToShow: String) {
         binding.containerForContacts
