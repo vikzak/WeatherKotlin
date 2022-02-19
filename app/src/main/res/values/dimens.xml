@@ -22,5 +22,8 @@
     <dimen name="weather_icon_margin">10dp</dimen>
     <dimen name="hairline">1dp</dimen>
 
+    <dimen name="fab_location_icon_size">45dp</dimen>
+
+
 
 </resources>
