@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import ru.gb.weatherkotlin.R
 import ru.gb.weatherkotlin.databinding.MainActivityBinding
 import ru.gb.weatherkotlin.view.main.MainFragment
+import ru.gb.weatherkotlin.view.main.maps.MapsFragment
 
 //import ru.gb.weatherkotlin.view.details.DetailsFragment
 //import ru.gb.weatherkotlin.view.main.MainFragment
@@ -40,6 +41,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.main_screen_menu, menu)
         menuInflater.inflate(R.menu.menu_content_provider, menu)
+        menuInflater.inflate(R.menu.maps_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -51,6 +53,10 @@ class MainActivity : AppCompatActivity() {
             }
             R.id.menu_content_provider ->{
                 showFragmentWithBackStack(ContentProviderFragment.newInstance())
+                true
+            }
+            R.id.menu_google_maps -> {
+                showFragmentWithBackStack(MapsFragment.newInstance())
                 true
             }
             else -> super.onOptionsItemSelected(item)
