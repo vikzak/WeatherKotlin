@@ -6,7 +6,7 @@ import retrofit2.http.Query
 import ru.gb.weatherkotlin.model.WeatherDTO
 
 interface WeatherAPI {
-    @GET("v2/forecast")
+    @GET("v2/informers")
     fun getWeather(
         @Header("X-Yandex-API-Key") token: String,
         @Query("lat") lat: Double,

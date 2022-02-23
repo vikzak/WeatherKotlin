@@ -20,7 +20,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherKotlin">
-
+        <service
+            android:name=".GeoZones"
+            android:enabled="true"
+            android:exported="true"/>
         <!--
              TODO: Before you run your application, you need a Google Maps API key.
 
@@ -36,17 +39,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBZ-OblQTtKdiLMPWbpIlj0s_Tij3LVV9k" />
 
-        <!-- <service -->
-        <!-- android:name=".DetailsService" -->
-        <!-- android:enabled="true" -->
-        <!-- android:exported="true"/> -->
-        <!-- <receiver -->
-        <!-- android:name=".broadcast.MainBroadcastReceiver" -->
-        <!-- android:exported="true"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.CONNECTIVITY_ACTION" /> -->
-        <!-- </intent-filter> -->
-        <!-- </receiver> -->
         <service
             android:name=".view.details.DetailsService"
             android:enabled="true"
@@ -54,13 +46,8 @@
         <service
             android:name=".view.details.DetailsService"
             android:enabled="true"
-            android:exported="true" /> <!-- <receiver -->
-        <!-- android:name=".view.MainBroadcastReceiver" -->
-        <!-- android:exported="true"> -->
-        <!-- <intent-filter> -->
-        <!-- <action android:name="android.intent.action.LOCALE_CHANGED" /> -->
-        <!-- </intent-filter> -->
-        <!-- </receiver> -->
+            android:exported="true" />
+
         <activity
             android:name=".view.MainActivity"
             android:exported="true">
