@@ -9,4 +9,6 @@
     <color name="white">#FFFFFFFF</color>
     <color name="loadingBackground">#4F9BFFFF</color>
     <color name="fragmentBackground">#FFFFFF</color>
+    <color name="colorPrimaryDark">#373737</color>
+    <color name="colorGeoButton">#FFAB00</color>
 </resources>
