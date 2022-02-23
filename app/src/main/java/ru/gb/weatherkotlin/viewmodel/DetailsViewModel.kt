@@ -23,10 +23,7 @@ private const val SERVER_ERROR = "Ошибка сервера"
 private const val REQUEST_ERROR = "Ошибка запроса на сервер"
 private const val CORRUPTED_DATA = "Неполные данные"
 
-//class DetailsViewModel(
-//    val detailsLiveData: MutableLiveData<AppState> = MutableLiveData(),
-//    private val detailsRepositoryImpl: DetailsRepository = DetailsRepositoryImpl(RemoteDataSource())
-//) : ViewModel() {
+
 class DetailsViewModel(
     val detailsLiveData: MutableLiveData<AppState> = MutableLiveData(),
     private val detailsRepository: DetailsRepository = DetailsRepositoryImpl(RemoteDataSource()),

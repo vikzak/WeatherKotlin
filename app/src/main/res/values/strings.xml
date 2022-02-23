@@ -40,4 +40,30 @@
     <string name="button_search_map">Search</string>
     <string name="marker_start">Start</string>
 
+
+
+
+    <!--  Перевод значений погоды -->
+    <string name="clear_rus">Ясно</string>
+    <string name="partly_cloudy_rus">Переменная облачность</string>
+    <string name="cloudy_rus">Пасмурно</string>
+    <string name="overcast_rus">Пасмурная погода</string>
+    <string name="drizzle_rus">Накрапываеть</string>
+    <string name="light_rain_rus">Легкий дождь</string>
+    <string name="rain_rus">Дождь</string>
+    <string name="moderate_rain_rus">Умеренный дождь</string>
+    <string name="heavy_rain_rus">Ливень</string>
+    <string name="continuous_heavy_rain_rus">Непрерывный сильный дождь</string>
+    <string name="showers_rus">Ливень</string>
+    <string name="wet_snow_rus">Мокрый снег</string>
+    <string name="light_snow_rus">Легкий снег</string>
+    <string name="snow_rus">Снег</string>
+    <string name="snow_showers_rus">Снегопад</string>
+    <string name="hail_rus">Град</string>
+    <string name="thunderstorm_rus">Гроза</string>
+    <string name="thunderstorm_with_rain_rus">Гроза с дождем</string>
+    <string name="thunderstorm_with_hail_rus">Гроза с градом</string>
+    <!--  исходные значения погоды -->
+    <string name="clear">clear</string>
+
 </resources>

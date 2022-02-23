@@ -72,7 +72,6 @@ class MapsFragment : Fragment() {
     ): View? {
         _binding = SearchMapLayoutBinding.inflate(inflater, container, false)
         return binding.root
-        //return inflater.inflate(R.layout.fragment_google_maps, container, false)
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -155,7 +154,6 @@ class MapsFragment : Fragment() {
             addresses[0].latitude,
             addresses[0].longitude )
         view.post {
-            //setMarker(location, searchText, R.drawable.ic_map_marker)
             setMarker(location, searchText)
             map.moveCamera(
                     CameraUpdateFactory.newLatLngZoom( location, 15f )

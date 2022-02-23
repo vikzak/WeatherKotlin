@@ -9,10 +9,6 @@ fun convertDtoToModel(weatherDTO: WeatherDTO): List<Weather> {
         fact.condition!!, fact.icon!!))
 }
 
-//fun convertDtoToModel(weatherDTO: WeatherDTO): List<Weather> {
-//    val fact: FactDTO = weatherDTO.fact!!
-//    return listOf(Weather(getDefaultCity(), fact.temp!!, fact.feels_like!!, fact.condition!!, fact.icon!!))
-//    }
 
 fun convertHistoryEntityToWeather(entityList: List<HistoryEntity>): List<Weather> {
     return entityList.map {

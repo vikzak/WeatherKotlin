@@ -1,8 +1,5 @@
 package ru.gb.weatherkotlin.repository
 
-
-
-import retrofit2.Callback
 import ru.gb.weatherkotlin.model.WeatherDTO
 
 interface DetailsRepository {

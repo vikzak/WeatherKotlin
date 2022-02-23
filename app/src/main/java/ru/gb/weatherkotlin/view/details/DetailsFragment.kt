@@ -5,6 +5,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
+import android.text.method.TextKeyListener.clear
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -73,7 +74,6 @@ class DetailsFragment : Fragment() {
         val view = binding.root
         findsViews()
         return view
-        //return inflater.inflate(R.layout.fragment_details, container, false)
     }
 
     @RequiresApi(Build.VERSION_CODES.N)
@@ -130,7 +130,6 @@ class DetailsFragment : Fragment() {
 
         Glide.with(requireContext())
             .load("https://freepngimg.com/thumb/city/36275-3-city-hd.png")
-            //.circleCrop()
             .into(binding.ivPicture)
         weather.icon?.let {
             GlideToVectorYou.justLoadImage(
@@ -166,25 +165,25 @@ class DetailsFragment : Fragment() {
     private fun tranclate(condition: String): String {
         var typeTemp = "не определено"
         when (condition) {
-            "clear" -> typeTemp = "Ясно"
-            "partly-cloudy" -> typeTemp = "Переменная облачность"
-            "cloudy" -> typeTemp = "Пасмурно"
-            "overcast" -> typeTemp = "Пасмурная погода"
-            "drizzle" -> typeTemp = "Накрапываеть"
-            "light-rain" -> typeTemp = "Легкий дождь"
-            "rain" -> typeTemp = "Дождь"
-            "moderate-rain" -> typeTemp = "Умеренный дождь"
-            "heavy-rain" -> typeTemp = "Ливень"
-            "continuous-heavy-rain" -> typeTemp = "Непрерывный сильный дождь"
-            "showers" -> typeTemp = "Ливень"
-            "wet-snow" -> typeTemp = "Мокрый снег"
-            "light-snow" -> typeTemp = "Легкий снег"
-            "snow" -> typeTemp = "Снег"
-            "snow-showers" -> typeTemp = "Снегопад"
-            "hail" -> typeTemp = "Град"
-            "thunderstorm" -> typeTemp = "Гроза"
-            "thunderstorm-with-rain" -> typeTemp = "Гроза-с-дождем"
-            "thunderstorm-with-hail" -> typeTemp = "Гроза с градом"
+            getString(R.string.clear) -> typeTemp = getString(R.string.clear_rus) //"Ясно"
+            "partly-cloudy" -> typeTemp = getString(R.string.partly_cloudy_rus) // "Переменная облачность"
+            "cloudy" -> typeTemp = getString(R.string.cloudy_rus) //"Пасмурно"
+            "overcast" -> typeTemp = getString(R.string.overcast_rus) // "Пасмурная погода"
+            "drizzle" -> typeTemp = getString(R.string.drizzle_rus) // "Накрапываеть"
+            "light-rain" -> typeTemp = getString(R.string.light_rain_rus) // "Легкий дождь"
+            "rain" -> typeTemp = getString(R.string.rain_rus) // "Дождь"
+            "moderate-rain" -> typeTemp = getString(R.string.moderate_rain_rus) // "Умеренный дождь"
+            "heavy-rain" -> typeTemp = getString(R.string.heavy_rain_rus) // "Ливень"
+            "continuous-heavy-rain" -> typeTemp = getString(R.string.continuous_heavy_rain_rus) // "Непрерывный сильный дождь"
+            "showers" -> typeTemp = getString(R.string.showers_rus) // "Ливень"
+            "wet-snow" -> typeTemp = getString(R.string.wet_snow_rus) // "Мокрый снег"
+            "light-snow" -> typeTemp = getString(R.string.light_snow_rus) // "Легкий снег"
+            "snow" -> typeTemp = getString(R.string.snow_rus) // "Снег"
+            "snow-showers" -> typeTemp = getString(R.string.snow_showers_rus) // "Снегопад"
+            "hail" -> typeTemp = getString(R.string.hail_rus) // "Град"
+            "thunderstorm" -> typeTemp = getString(R.string.thunderstorm_rus) // "Гроза"
+            "thunderstorm-with-rain" -> typeTemp = getString(R.string.thunderstorm_with_rain_rus) // "Гроза-с-дождем"
+            "thunderstorm-with-hail" -> typeTemp = getString(R.string.thunderstorm_with_hail_rus) // "Гроза с градом"
         }
         return typeTemp
     }

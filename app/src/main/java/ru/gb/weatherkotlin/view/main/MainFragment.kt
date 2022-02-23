@@ -284,13 +284,6 @@ class MainFragment : Fragment() {
                 }
             }
 
-//    private fun changeWeatherDataSet() {
-//        if (isDataSetRus) {
-//            viewModel.getWeatherFromLocalSourceWorld()
-//        } else {
-//            viewModel.getWeatherFromLocalSourceRus()
-//        }.also { isDataSetRus = !isDataSetRus }
-//    }
 
             private fun changeWeatherDataSet() {
                 if (isDataSetWorld) {
