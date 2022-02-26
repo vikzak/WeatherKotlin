@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "762079284562",
+    "project_id": "calcium-petal-341923",
+    "storage_bucket": "calcium-petal-341923.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:762079284562:android:1b5d05562cbd561a5a3e8b",
+        "android_client_info": {
+          "package_name": "ru.gb.weatherkotlin"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "762079284562-ao5ls6h8rtl2ai9tan4vptfg84olhgg6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD0CHYWQzlDWkLn8k__DuxLAelLq9TQxto"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "762079284562-ao5ls6h8rtl2ai9tan4vptfg84olhgg6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

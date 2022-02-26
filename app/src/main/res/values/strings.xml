@@ -5,4 +5,65 @@
     <string name="city_coordinates">lt/ln: %s, %s"</string>
     <string name="error">Ошибка</string>
     <string name="reload">Повторить загрузку</string>
+
+    <string name="threads">Threads</string>
+    <string name="in_main_thread">В главном потоке</string>
+    <string name="from_thread">Из потока %d</string>
+    <string name="in_thread">Выводим в потоке %s</string>
+    <string name="calculate_in_thread">Считаем в потоке %s</string>
+    <string name="my_handler_thread">My_Handler_Thread</string>
+    <string name="hello_from_thread_fragment">Hello from ThreadsFragment</string>
+    <string name="calculate">Расчёт</string>
+    <string name="default_number">1</string>
+    <string name="calc_in_thread">Расчёт в потоке</string>
+    <string name="handler_thread">Handler_Thread</string>
+    <string name="service">Service</string>
+    <string name="service_broadcast">Service + Broadcast</string>
+    <string name="menu_title_history">history</string>
+    <string name="content_provider">CP</string>
+
+    <string name="dialog_button_close">Закрыть</string>
+    <string name="dialog_title_no_gps">Доступ к геолокации закрыт</string>
+    <string name="dialog_message_no_gps">Разрешите доступ к геолокации, если хотите узнать погоду текущего места</string>
+    <string name="dialog_title_gps_turned_off">GPS отключён</string>
+    <string name="dialog_message_last_location_unknown">Местонахождение неизвестно. Включите GPS, если хотите получить погоду по текущему адресу</string>
+    <string name="dialog_message_last_known_location">Показана последняя известная локация. Включите GPS, если хотите обновить местонахождение</string>
+    <string name="dialog_rationale_title">Доступ к геолокации</string>
+    <string name="dialog_rationale_meaasge">Объяснение</string>
+    <string name="dialog_rationale_give_access">Предоставить доступ</string>
+    <string name="dialog_rationale_decline">Не надо</string>
+    <string name="dialog_address_title">Ваш адрес</string>
+    <string name="dialog_address_get_weather">Узнать погоду</string>
+    <string name="google_maps">maps</string>
+
+    <string name="default_address">Red Square, 1, Moscow</string>
+    <string name="button_search_map">Search</string>
+    <string name="marker_start">Start</string>
+
+
+
+
+    <!--  Перевод значений погоды -->
+    <string name="clear_rus">Ясно</string>
+    <string name="partly_cloudy_rus">Переменная облачность</string>
+    <string name="cloudy_rus">Пасмурно</string>
+    <string name="overcast_rus">Пасмурная погода</string>
+    <string name="drizzle_rus">Накрапываеть</string>
+    <string name="light_rain_rus">Легкий дождь</string>
+    <string name="rain_rus">Дождь</string>
+    <string name="moderate_rain_rus">Умеренный дождь</string>
+    <string name="heavy_rain_rus">Ливень</string>
+    <string name="continuous_heavy_rain_rus">Непрерывный сильный дождь</string>
+    <string name="showers_rus">Ливень</string>
+    <string name="wet_snow_rus">Мокрый снег</string>
+    <string name="light_snow_rus">Легкий снег</string>
+    <string name="snow_rus">Снег</string>
+    <string name="snow_showers_rus">Снегопад</string>
+    <string name="hail_rus">Град</string>
+    <string name="thunderstorm_rus">Гроза</string>
+    <string name="thunderstorm_with_rain_rus">Гроза с дождем</string>
+    <string name="thunderstorm_with_hail_rus">Гроза с градом</string>
+    <!--  исходные значения погоды -->
+    <string name="clear">clear</string>
+
 </resources>
