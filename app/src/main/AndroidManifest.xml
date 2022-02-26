@@ -21,9 +21,18 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WeatherKotlin">
         <service
+            android:name=".experiment.MyMessageService"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+        <service
             android:name=".GeoZones"
             android:enabled="true"
-            android:exported="true"/>
+            android:exported="true" />
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyBZ-OblQTtKdiLMPWbpIlj0s_Tij3LVV9k" />
@@ -42,6 +51,7 @@
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

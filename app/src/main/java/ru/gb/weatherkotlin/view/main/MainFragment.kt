@@ -16,6 +16,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
+import com.google.android.gms.tasks.OnCompleteListener
 import kotlinx.android.synthetic.main.fragment_main.*
 import ru.gb.weatherkotlin.R
 import ru.gb.weatherkotlin.databinding.FragmentMainBinding
@@ -330,9 +331,11 @@ class MainFragment : Fragment() {
                 }
             }
 
+
+
             override fun onDestroy() {
                 _binding = null
                 adapter.removeListener()
                 super.onDestroy()
             }
-        }
+}

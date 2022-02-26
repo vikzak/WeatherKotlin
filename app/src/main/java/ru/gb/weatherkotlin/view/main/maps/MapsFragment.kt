@@ -107,6 +107,8 @@ class MapsFragment : Fragment() {
         }
     }
 
+
+
     private fun setMarker(
         location: LatLng,
         searchText: String

@@ -1,19 +1,19 @@
 package ru.gb.weatherkotlin.view
 
-//import ru.gb.weatherkotlin.broadcast.MainBroadcastReceiver
-//import ru.gb.weatherkotlin.broadcast.NetworkBroadcastReceiver
+
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+//import com.google.android.gms.tasks.OnCompleteListener
 import ru.gb.weatherkotlin.R
 import ru.gb.weatherkotlin.databinding.MainActivityBinding
 import ru.gb.weatherkotlin.view.main.MainFragment
 import ru.gb.weatherkotlin.view.main.maps.MapsFragment
+import com.google.firebase.installations.FirebaseInstallations
 
-//import ru.gb.weatherkotlin.view.details.DetailsFragment
-//import ru.gb.weatherkotlin.view.main.MainFragment
 
 class MainActivity : AppCompatActivity() {
 
@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             showMainFragment()
         }
+        getToken()
     }
 
     private fun showFragment(fragment: Fragment) {
@@ -51,7 +52,7 @@ class MainActivity : AppCompatActivity() {
                 showFragmentWithBackStack(HistoryFragment.newInstance())
                 true
             }
-            R.id.menu_content_provider ->{
+            R.id.menu_content_provider -> {
                 showFragmentWithBackStack(ContentProviderFragment.newInstance())
                 true
             }
@@ -64,10 +65,21 @@ class MainActivity : AppCompatActivity() {
     }
 
 
+
     private fun showFragmentWithBackStack(fragment: Fragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.container, fragment)
             .addToBackStack(null)
             .commit()
+    }
+
+    private fun getToken(){ //cw4d_7XlRJyWA-uGQxgo-a
+        FirebaseInstallations.getInstance().id.addOnCompleteListener { task ->
+            if (task.isSuccessful) {
+                Log.d("Installations", "Installation ID: " + task.result)
+            } else {
+                Log.e("Installations", "Unable to get Installation ID")
+            }
+        }
     }
 }
